@@ -35,14 +35,14 @@ class _MyChatState extends State<MyChat> {
               height: 60,
             ),
             SizedBox(
-                height: MediaQuery.of(context).size.height / 1.2,
-                child: ListView.builder(
+                height: MediaQuery.of(context).size.height / 1.18,
+                child: Obx(() => ListView.builder(
                     itemCount: controller.messageList.length,
                     itemBuilder: (context, index) {
                       return Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.centerRight,
                           child: ChartCard(controller.messageList[index]));
-                    })),
+                    }))),
             Material(
               color: Colors.black,
               child: Row(
@@ -50,8 +50,7 @@ class _MyChatState extends State<MyChat> {
                   const SizedBox(
                     width: 8.0,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.3,
+                  Expanded(
                     child: TextFormField(
                       controller: messageController,
                       style: const TextStyle(color: Colors.white),
@@ -82,6 +81,9 @@ class _MyChatState extends State<MyChat> {
                   )
                 ],
               ),
+            ),
+            const SizedBox(
+              height: 10,
             )
           ],
         ),

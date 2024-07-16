@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
+import 'package:my_chat/model/recive_message.dart';
 import 'package:my_chat/store/chat_store.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -12,6 +15,9 @@ mySocketConnection() {
     print('connect');
     socket.emit('msg', 'test');
   });
-  socket.on('recive', (data) => controller.getMessage(data));
+  socket.on('recive', (data) {
+    ChatMessage chatMessage = ChatMessage.fromJson(data);
+    controller.getMessage(chatMessage.message);
+  });
   socket.onDisconnect((_) => print('disconnect'));
 }
